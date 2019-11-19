@@ -2,12 +2,13 @@
 //  AppDelegate.swift
 //  instacat
 //
-//  Created by mbtec22 on 11/19/19.
+//  Created by Jeremi Nunez on 11/19/19.
 //  Copyright © 2019 Tecsup. All rights reserved.
 //
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        FirebaseApp.configure()
         return true
     }
 
