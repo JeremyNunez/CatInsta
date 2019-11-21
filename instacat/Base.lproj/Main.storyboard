@@ -41,9 +41,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aqz-W3-pu5">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aqz-W3-pu5">
                                 <rect key="frame" x="0.0" y="146" width="414" height="716"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kRg-vJ-bKP">
                                     <size key="itemSize" width="208" height="166"/>
@@ -77,6 +76,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aqz-W3-pu5" firstAttribute="top" secondItem="RZv-Hz-psB" secondAttribute="top" constant="58" id="79m-7m-aHW"/>
+                            <constraint firstItem="aqz-W3-pu5" firstAttribute="leading" secondItem="RZv-Hz-psB" secondAttribute="leading" id="D61-qF-YIZ"/>
+                            <constraint firstItem="aqz-W3-pu5" firstAttribute="trailing" secondItem="RZv-Hz-psB" secondAttribute="trailing" id="XhD-za-itJ"/>
+                            <constraint firstItem="aqz-W3-pu5" firstAttribute="bottom" secondItem="RZv-Hz-psB" secondAttribute="bottom" id="sUr-f0-jOP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RZv-Hz-psB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Instacat" id="Tyg-Pr-i7H">

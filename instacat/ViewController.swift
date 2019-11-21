@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
+import SDWebImage
 
 class ViewController: UIViewController, UICollectionViewDataSource{
     
@@ -22,26 +24,34 @@ class ViewController: UIViewController, UICollectionViewDataSource{
     
     @IBOutlet weak var imageCollection: UICollectionView!
     var customImageFlowLayout: CustomImageFlowLayout!
-    var images = [UIImage]()
+    var images = [CatInsta]()
+    
+    var dbRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadImages()
+        dbRef = Database.database().reference().child("images")
+        
+        loadDB()
         
         customImageFlowLayout = CustomImageFlowLayout()
         imageCollection.collectionViewLayout = customImageFlowLayout
         imageCollection.backgroundColor = .white
         
     }
-    func loadImages(){
-        images.append(UIImage(named: "image1")!)
-        images.append(UIImage(named: "image1")!)
-        images.append(UIImage(named: "image1")!)
-        images.append(UIImage(named: "image1")!)
-        images.append(UIImage(named: "image1")!)
-        images.append(UIImage(named: "image1")!)
-        self.imageCollection.reloadData()
+    func loadDB(){
+        dbRef.observe(DataEventType.value, with: { (snapshot) in
+            var newImages = [CatInsta]()
+            
+            for catInstaSnapshot in snapshot.children{
+                let catInstaObject = CatInsta(snapshot: catInstaSnapshot as! DataSnapshot )
+                newImages.append(catInstaObject)
+            }
+            
+            self.images = newImages
+            self.imageCollection.reloadData()
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,8 +84,10 @@ class ViewController: UIViewController, UICollectionViewDataSource{
     
     func collectionView(_ imageCollection: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = imageCollection.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ImageCollectionViewCell
+        
         let image = images[indexPath.row]
-        cell.imageView.image = image;
+        
+        cell.imageView.sd_setImage(with: URL(string: image.url), placeholderImage: UIImage(named: "image1"))
         return cell
     }
 }
